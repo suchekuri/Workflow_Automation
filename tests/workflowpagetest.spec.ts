@@ -1,5 +1,7 @@
-import { test, expect } from '@playwright/test';
+//import { test, expect } from '@playwright/test';
+import {test} from '../fixtures/loginfixture';
 import Workflowpage from '../page_object/Workflowpage';
+
 import Data from '../Utilities/Data.json';
  
 
@@ -18,33 +20,33 @@ let workFlowPage: Workflowpage;
 
 // data to create parameterized tests
 userData.forEach(({ fullName, age, email, Password, Skills, Gender, Country, State, Comments }) => {
-    test('test-Automation Playground ' + fullName, async ({ page }) => {
+    test('test-Automation Playground ' + fullName, async ({ workflowPage, page }) => {
         //object =  new assignment
         //workFlowPage = new Workflowpage(page);
         //workFlowPage.navigate('https://qamatters.github.io/demoautomationWebSite/WorkFlows/Forms/demo-form.html');
         //await page.pause();
-        await workFlowPage.fillText(workFlowPage.fullName, fullName);
+        await workflowPage.fillText(workflowPage.fullName, fullName);
         await page.pause();
-        await workFlowPage.fillText(workFlowPage.password, Password);
-        await workFlowPage.fillText(workFlowPage.Comments, Comments);
-        await workFlowPage.fillText(workFlowPage.email, email);
+        await workflowPage.fillText(workflowPage.password, Password);
+        await workflowPage.fillText(workflowPage.Comments, Comments);
+        await workflowPage.fillText(workflowPage.email, email);
         //await workFlowPage.fillText(workFlowPage.age, "31");
         await page.pause();
-        await workFlowPage.selectFemale();
+        await workflowPage.selectFemale();
         console.log("Female selected");
-        await workFlowPage.checkplayWright();
+        await workflowPage.checkplayWright();
         //await page.pause();
         console.log("Playwright checked");
         page.locator('#country')
-        await workFlowPage.selectCountry("USA");
+        await workflowPage.selectCountry("USA");
         console.log("USA selected from dropdown");
         //await page.pause();
-        await workFlowPage.selectCountry("USA");
+        await workflowPage.selectCountry("USA");
         //await workFlowPage.selectState("Texas");
-        await workFlowPage.clicksubmit();
+        await workflowPage.clicksubmit();
         //await page.pause();
         console.log("completed");
-        await workFlowPage.ascertions(fullName, email, "", Country, State, Skills)
+        await workflowPage.ascertions(fullName, email, "", Country, State, Skills)
         //await workFlowPage.ascertions("Bob Johnson", "bob@example.com", '214-876-8907', 'USA', 'TEXAS', 'Playwright')
         //await workFlowPage.ascertions("Charlie Johnson", "charlie@example.com", '214-876-8907', 'USA', 'TEXAS', 'Playwright')
         //await workFlowPage.ascertions("Donna Johnson", "donna@example.com", '214-876-8907', 'USA', 'TEXAS', 'Playwright')
@@ -80,27 +82,27 @@ test.skip('test-Automation Playground1', async ({ page }) => {
         await workFlowPage.ascertions("Alice B", "alice@gmail.com", '214-876-8907', 'USA', 'TEXAS', 'Playwright')
     }
     )
-test('Validating age and State Parameters', async ({ page }) => {
+test('Validating age and State Parameters', async ({ workflowPage, page }) => {
         //workFlowPage = new Workflowpage(page);
         //workFlowPage.navigate('https://qamatters.github.io/demoautomationWebSite/WorkFlows/Forms/demo-form.html');
         //await page.pause();
-        await workFlowPage.fillText(workFlowPage.age, "31");
+        await workflowPage.fillText(workflowPage.age, "31");
         //await page.pause();
         //await workFlowPage.selectState("Texas");
 
     })
 
-test.beforeEach("Run this before each test", async ({ page }) => {
-        workFlowPage = new Workflowpage(page);
-        workFlowPage.navigate(process.env.URL);
-        await page.pause();
-    })
+// test.beforeEach("Run this before each test", async ({ page }) => {
+//         workFlowPage = new Workflowpage(page);
+//         workFlowPage.navigate(process.env.URL);
+//         await page.pause();
+//     })
 
-test.afterEach("Run this after each test", async ({ page }) => {
-        workFlowPage = new Workflowpage(page);
-        //await workFlowPage.clicksubmit();
-        console.log("completed");
-        await page.pause();
-    })
+// test.afterEach("Run this after each test", async ({ page }) => {
+//         workFlowPage = new Workflowpage(page);
+//         //await workFlowPage.clicksubmit();
+//         console.log("completed");
+//         await page.pause();
+//     })
 
 //test.describe

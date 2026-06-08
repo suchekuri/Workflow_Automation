@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "runonfirefox": "npx playwright test tests/workflowpagetest.spec.ts --project=FIREFOX",
-    "runonchrome": "npx playwright test tests/workflowpagetest.spec.ts --project=CHROME"
+    "runonchrome": "npx playwright test tests/workflowpagetest.spec.ts --project=CHROMIUM"
   },
   "keywords": [],
   "author": "",
