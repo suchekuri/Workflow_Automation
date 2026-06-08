@@ -3,7 +3,10 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "runonfirefox": "npx playwright test tests/workflowpagetest.spec.ts --project=FIREFOX",
+    "runonchrome": "npx playwright test tests/workflowpagetest.spec.ts --project=CHROME"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -11,5 +14,8 @@
   "devDependencies": {
     "@playwright/test": "^1.60.0",
     "@types/node": "^25.9.0"
+  },
+  "dependencies": {
+    "dotenv": "^17.4.2"
   }
 }

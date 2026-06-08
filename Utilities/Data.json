@@ -1,0 +1,11 @@
+{
+    "Fullname": "ABC",
+    "Age": "31",
+    "Email": "abc@gmail.com",
+    "Password": "Test123",
+    "Skills": "Playwright",
+    "Gender": "Female",
+    "Countyry": "USA",
+    "State": "Texas",
+    "Comments": "Testing"
+}

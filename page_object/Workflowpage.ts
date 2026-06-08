@@ -1,4 +1,5 @@
 import { test, expect, Locator, Page } from '@playwright/test';
+import Data from '../Utilities/Data.json';
 
 export default class WorkFlowPage {
 
@@ -36,10 +37,10 @@ export default class WorkFlowPage {
         this.age = this.page.getByPlaceholder('Age');
 
         this.genderMale = page.getByLabel('Male');
-        this.genderFemale = page.getByLabel('Female');
+        this.genderFemale = page.getByLabel(Data.Gender);
 
         this.SeleniumCheckbox = page.getByLabel('Selenium');
-        this.playWrightCheckbox = page.getByLabel('PlayWright');
+        this.playWrightCheckbox = page.getByLabel(Data.Skills);
 
         this.countryDropdown = this.page.locator('#country');
         this.stateDropdown= this.page.locator('#state');
