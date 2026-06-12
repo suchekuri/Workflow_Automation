@@ -1,0 +1,44 @@
+import { test, expect } from '@playwright/test';
+
+test('test', async ({ page }) => {
+  await page.goto('https://qamatters.github.io/demoautomationWebSite/WorkFlows/Forms/demo-form.html');
+  await page.getByRole('textbox', { name: 'Full Name' }).click();
+  await page.getByRole('textbox', { name: 'Full Name' }).fill('abc');
+  await page.getByRole('textbox', { name: 'Password' }).click();
+  await page.getByRole('textbox', { name: 'Password' }).fill('test');
+  await page.getByRole('textbox', { name: 'Comments' }).click();
+  await page.getByRole('textbox', { name: 'Comments' }).fill('testing');
+  await page.getByPlaceholder('Age').click();
+  await page.getByPlaceholder('Age').fill('23');
+  await page.getByRole('textbox', { name: 'Email' }).click();
+  await page.getByRole('textbox', { name: 'Email' }).fill('abc@gmail.com');
+  await page.getByRole('textbox', { name: 'Website URL' }).click();
+  await page.getByRole('textbox', { name: 'Website URL' }).fill('https://qamatters.github.io/demoautomationWebSite/WorkFlows/Forms/demo-form.html');
+  await page.getByRole('textbox', { name: 'Phone Number' }).click();
+  await page.getByRole('textbox', { name: 'Phone Number' }).fill('234-567-0987');
+  await page.getByRole('radio', { name: 'Female' }).check();
+  await page.getByRole('checkbox', { name: 'Playwright' }).check();
+  await page.locator('select[name="experience"]').selectOption('Beginner');
+  page.once('dialog', dialog => {
+    console.log(`Dialog message: ${dialog.message()}`);
+    dialog.dismiss().catch(() => {});
+  });
+  await page.locator('#country').selectOption('USA');
+  await page.locator('#state').selectOption('Texas');
+  await page.locator('input[name="dob"]').fill('2026-06-12');
+  const downloadPromise = page.waitForEvent('download');
+  await page.getByRole('button', { name: 'Download File' }).click();
+  const download = await downloadPromise;
+  await page.getByRole('button', { name: 'Choose File' }).click();
+  await page.getByRole('button', { name: 'Choose File' }).setInputFiles('sports.jpg');
+  const page1Promise = page.waitForEvent('popup');
+  await page.getByRole('link', { name: 'Playwright' }).click();
+  const page1 = await page1Promise;
+  await page.locator('iframe').contentFrame().getByRole('radio').first().check();
+  await page.locator('iframe').contentFrame().getByRole('checkbox').first().check();
+  await page.locator('iframe').contentFrame().getByRole('textbox', { name: 'Enter text' }).click();
+  await page.locator('iframe').contentFrame().getByRole('textbox', { name: 'Enter text' }).fill('hi');
+  await page.getByRole('button', { name: 'Show Toast' }).click();
+  await page.getByRole('button', { name: 'Submit' }).click();
+  await page.getByRole('link', { name: 'Home' }).click();
+});

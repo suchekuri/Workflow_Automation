@@ -1,7 +1,8 @@
 import { test, expect, Locator, Page } from '@playwright/test';
 import Data from '../Utilities/Data.json';
+import PageBuilder from '../Utilities/PageBuilder';
 
-export default class WorkFlowPage {
+export default class WorkFlowPage extends PageBuilder {
 
 
     //Text Fields
@@ -13,10 +14,15 @@ export default class WorkFlowPage {
     //Radio button
     genderMale: Locator;
     genderFemale: Locator;
+    iframeRadio: Locator;
 
     //Checkbox
     SeleniumCheckbox: Locator;
     playWrightCheckbox: Locator;
+    iframeCheck: Locator;
+
+   
+   
 
     //dropdown
     countryDropdown: Locator;
@@ -27,6 +33,7 @@ export default class WorkFlowPage {
 
 
     constructor(page: Page) {
+      super();
         // this means class level access    
         this.page = page;
         this.submit = this.page.getByRole('button', { name: 'Submit' });
@@ -44,6 +51,9 @@ export default class WorkFlowPage {
 
         this.countryDropdown = this.page.locator('#country');
         this.stateDropdown= this.page.locator('#state');
+
+        this.iframeRadio = this.page.locator('iframe').contentFrame().getByRole('radio').first();
+        this.iframeCheck = this.page.locator('iframe').contentFrame().getByRole('checkbox').first();
        
 
 
@@ -65,9 +75,17 @@ export default class WorkFlowPage {
     async checkplayWright() {
         await this.playWrightCheckbox.check();
     }
+async iframeCheckbox(){
+  await this.iframeCheck.check();
+}
+
     //Radio button 
     async selectFemale() {
         await this.genderFemale.check();
+    }
+
+    async iframeRadiobutton(){
+      await this.iframeRadio.check();
     }
 
     async selectCountry(selectCountry: string) {
@@ -90,6 +108,8 @@ export default class WorkFlowPage {
         await expect(this.page.locator('//tbody[@id="recordsBody"]/tr[2]/td[4]')).toHaveText(country);
         //await expect(this.page.locator('//tbody[@id="recordsBody"]/tr[2]/td[5]')).toHaveText(state);
         await expect(this.page.locator('//tbody[@id="recordsBody"]/tr[2]/td[7]')).toHaveText(skills);
+//await expect(this.page.locator('//tbody[@id="recordsBody"]/tr[2]/td[12]')).toHaveText(Month);
+
 
     }
 
